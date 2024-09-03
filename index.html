@@ -1,0 +1,175 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+    </style>
+    <header>
+        
+    </header>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Menu japanfood</h1>
+        <div class="menu">
+            <div class="menu-item">
+                <img src="img/IMG-20240625-WA0032.jpg" alt="Camarão porcionado">
+                <div class="description">
+                    <h2>Porção de Camarão</h2>
+                    <p>Deliciosa porção de camarão fresquinho empanado são 15 unidades.</p>
+                    <p>R$ 30,00</p>
+                    <button onclick="addToCart('Camarão porcionado', 30)">Adicionar</button>
+                </div>
+            </div>
+          
+            <div class="menu-item">
+                <img src="img/tmk.jpg" alt="Temaki Camarão Empanado">
+                <div class="description">
+                    <h2>Temaki Camarão Empanado</h2>
+                    <p>Super Temaki de Camarão empanado com Arroz oriental e alga</p>
+                    <p>R$ 18,00</p>
+                    <button onclick="addToCart('Temaki Camarão Empanado', 18)">Adicionar</button>
+                </div>
+            </div>
+          
+            <div class="menu-item">
+                <img src="img/IMG-20240625-WA0033.jpg" alt="YkB Molho Branco C">
+                <div class="description">
+                    <h2>Yaksoba ao Molho Branco de Camarão</h2>
+                    <p>Delicioso Yaksoba ao molho branco de camarão, Brocolis, cenoura (Bacon opcional)</p>
+                    <p>R$ 52,00</p>
+                    <button onclick="addToCart('YkB B Camarão', 52)">Adicionar</button>
+                </div>
+            </div>
+          
+            <div class="menu-item">
+                <img src="img/IMG-20240625-WA0034.jpg" alt="Sushirritos">
+                <div class="description">
+                    <h2>Sushirritos de Camarão</h2>
+                    <p>Super sushi recheado com camarão alface americano, doritos e chedar com Arroz Oriental </p>
+                    <p>R$ 30,00</p>
+                    <button onclick="addToCart('Sushirritos Camarão', 30)">Adicionar</button>
+                </div>
+            </div>
+          
+            <div class="menu-item">
+                <img src="img/IMG-20240625-WA0035.jpg" alt="YkM Camarão">
+                <div class="description">
+                    <h2>Yakimeshi de Camarão</h2>
+                    <p>Delicioso Yakimeshi de camarão com repolho, cenoura, bacon e Arroz Oriental</p>
+                    <p>R$ 48,00</p>
+                    <button onclick="addToCart('YkM Camarão', 48)">Adicionar</button>
+                </div>
+            </div>
+          
+            <div class="menu-item">
+                <img src="img/IMG-20240625-WA0037.jpg" alt="Maiodom Camarão">
+                <div class="description">
+                    <h2>maiodon de Camarão</h2>
+                    <p>Delicioso Mayodon de Camarão empanado com maionesse arroz oriental</p>
+                    <p>R$ 43,00</p>
+                    <button onclick="addToCart('Mayodon Cam', 48)">Adicionar</button>
+                </div>
+            </div>
+       
+            <div class="menu-item">
+                <img src="img/IMG-20240625-WA0036.jpg" alt="YkB T Camarão ">
+                <div class="description">
+                    <h2>Yaksoba Camarão</h2>
+                    <p>Yaksoba de camarão tradicional com brocolis, cenoura</p>
+                    <p>R$ 58,00</p>
+                    <button onclick="addToCart('YkB Trad Cam', 58)">Adicionar</button>
+                </div>
+            </div>
+     
+            <div class="menu-item">
+                <img src="img/Imagem do WhatsApp de 2024-06-26 à(s) 13.15.10_05a7ef34.jpg" alt="Item 8">
+                <div class="description">
+                    <h2>HotMaki</h2>
+                    <p>Super HotMaki de Salmao grelhado, empanado com arroz oriental e algas</p>
+                    <p>R$ 38,00</p>
+                    <button onclick="addToCart('HotMaki S', 14)">Adicionar</button>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+    <div class="cart-container">
+        <div class="cart">
+            <h2>Meus Pedidos</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: R$ <span id="total">0.00</span></p>
+            <div>
+                <label for="observations">Observações:</label>
+                <textarea id="observations" rows="3" cols="30" placeholder="Adicione alguma observação..."></textarea>
+            </div>
+            <button class="centralized-button" onclick="checkout()">Próximo passo</button>
+        </div>
+    </div>
+    <div class="checkout-summary-container">
+        <div id="checkout" class="checkout-container" style="display:none;">
+            <h2>Confirmar Pedido</h2>
+            <form id="checkout-form">
+                <label for="payment-method">Método de Pagamento:</label>
+                <select id="payment-method" onchange="checkPaymentMethod()">
+                    <option value="debito">Débito</option>
+                    <option value="credito">Crédito</option>
+                    <option value="pix">Pix</option>
+                    <option value="dinheiro">Dinheiro</option>
+                </select>
+
+                <div id="pix-message" style="display:none; color: rgb(202, 18, 12); margin-top: 10px;">
+                    A chave Pix é: <span id="XxX-XxX-XxX"></span>
+                </div>
+
+                <div id="cash-options" style="display:none;">
+                    <label for="change-needed">Precisa de troco?</label>
+                    <input type="checkbox" id="change-needed" onchange="toggleChangeInput()">
+                    <div id="change-amount" style="display:none;">
+                        <label for="cash-amount">Valor da Nota:</label>
+                        <input type="number" id="cash-amount" oninput="calculateChange()">
+                    </div>
+                    <p>Troco: R$ <span id="change">0.00</span></p>
+                </div>
+
+                <label for="delivery-option">Retirada ou Entrega:</label>
+                <select id="delivery-option" onchange="checkDeliveryOption()">
+                    <option value="retirada">Retirada</option>
+                    <option value="entrega">Entrega</option>
+                </select>
+
+                <div id="delivery-info" style="display:none;">
+                    <label for="address">Endereço:</label>
+                    <input type="text" id="address">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name">
+                    <p>Não se esqueça da taxa, entre R$5,00 e R$25,00</p>
+                </div>
+
+                <button class="centralized-button" type="button" onclick="confirmOrder()">Confirmar Pedido</button>
+            </form>
+        </div>
+        <div id="order-summary" class="order-summary-container" style="display:none;">
+            <h2>Resumo do Pedido</h2>
+            <pre id="order-details"></pre>
+            <button class="copy-button" onclick="copyOrderDetails()">Copiar Resumo</button>
+        </div>
+    </div>
+
+</body>
+     <script src="script.js"></script>
+    <footer>
+       
+        <a href="https://www.instagram.com/arigataisushi/" target="_blank" rel="noopener noreferrer"><img src="icon/instagram.png"></img></a>
+      <a href="https://www.facebook.com/yakisobaexpresss/" target="blank" rel="noopener noreferrer"><img src="icon/facebook.png" alt=""></a>
+      <a href="https://wa.me/5511943041258" target="_blank" rel="noopener noreferrer"><img src="icon/whatsapp.png" alt=""></img></a>
+        <a href="https://maps.app.goo.gl/uEG6xYebsVKKYqeg7" target="_blank" rel="noopener noreferrer"><img src="icon/ferramenta.png" alt=""></a>
+       
+    </footer>
+    
+    
+    </html>
